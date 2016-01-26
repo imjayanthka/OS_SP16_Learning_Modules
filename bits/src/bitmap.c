@@ -7,7 +7,16 @@ struct bitmap {
 };
 
 bitmap_t *bitmap_create(size_t n_bits) {
-
+	if(0 < n_bits && n_bits <= 255 ) {
+		struct bitmap bitmapCreated;
+		size_t bit_count_temp = n_bits;
+		size_t byte_count_temp = n_bits/8;
+		bitmapCreated.data = (uint8_t *)malloc(byte_count_temp);
+		bitmapCreated.bit_count = bit_count_temp;
+		bitmapCreated.byte_count = byte_count_temp;
+		struct bitmap *ptr = &bitmapCreated;
+		return ptr;
+	}
 	return NULL;
 }
 
